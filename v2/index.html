@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Surya Haridasan · Anyone can ship. Few can design.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #FAF6EE;
+  --paper-deep: #F3EDDF;
+  --ink: #1C1712;
+  --ink-soft: #5C5347;
+  --ink-faint: #8A8071;
+  --vermillion: #B5402A;
+  --vermillion-deep: #93321F;
+  --gold: #C29B4A;
+  --line: #DED5C2;
+  --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --sans: "Manrope", "Avenir Next", -apple-system, sans-serif;
+  --measure: 72rem;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--vermillion); color: var(--paper); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+/* ---------- header ---------- */
+header {
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 0;
+}
+.wordmark {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+}
+.wordmark .dot { color: var(--vermillion); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-soft);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover { color: var(--vermillion); }
+@media (max-width: 640px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { position: relative; overflow: hidden; }
+.hero-inner {
+  position: relative;
+  padding: clamp(4.5rem, 11vh, 8rem) 0 clamp(4rem, 9vh, 7rem);
+}
+.deco-arch {
+  position: absolute; right: -4rem; top: 50%;
+  transform: translateY(-50%);
+  width: clamp(280px, 38vw, 520px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .deco-arch { opacity: 0.25; right: -30%; }
+}
+.kicker {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--vermillion);
+  margin-bottom: 2.25rem;
+}
+.kicker::before {
+  content: ""; display: block;
+  width: 2.5rem; height: 1px; background: var(--vermillion);
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 380;
+  font-size: clamp(2.9rem, 7.2vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  max-width: 12em;
+  font-variation-settings: "opsz" 144;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 430;
+  color: var(--vermillion);
+}
+.hero-sub {
+  margin-top: 2.25rem;
+  max-width: 34em;
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.hero-sub strong { color: var(--ink); font-weight: 600; }
+.hero-actions {
+  margin-top: 2.75rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-family: var(--sans);
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 1rem 1.9rem;
+  text-decoration: none;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1.5px solid var(--ink);
+  transition: all 0.22s ease;
+}
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--vermillion); border-color: var(--vermillion); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { border-color: var(--vermillion); color: var(--vermillion); }
+.copy-note {
+  font-size: 0.85rem; color: var(--vermillion);
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.copy-note.show { opacity: 1; }
+
+/* ---------- credo strip ---------- */
+.credo {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-deep);
+}
+.credo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.credo-item { padding: 2.5rem 2.5rem 2.5rem 0; }
+.credo-item + .credo-item { border-left: 1px solid var(--line); padding-left: 2.5rem; }
+@media (max-width: 800px) {
+  .credo-grid { grid-template-columns: 1fr; }
+  .credo-item + .credo-item { border-left: none; border-top: 1px solid var(--line); padding-left: 0; }
+  .credo-item { padding: 1.75rem 0; }
+}
+.credo-item h3 {
+  font-family: var(--serif);
+  font-weight: 500; font-style: italic;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.credo-item p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.55; }
+.credo-num {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+  color: var(--gold); display: block; margin-bottom: 0.9rem;
+}
+
+/* ---------- work ---------- */
+.work { padding: clamp(4rem, 9vh, 7rem) 0; }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: clamp(2.5rem, 6vh, 4.5rem);
+}
+.section-head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.01em;
+}
+.section-head .count {
+  font-family: var(--serif); font-style: italic;
+  color: var(--ink-faint); font-size: 1.1rem;
+}
+.case {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  padding: clamp(2.5rem, 6vh, 4.5rem) 0;
+  text-decoration: none;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+.case:last-of-type { border-bottom: 1px solid var(--line); }
+.case:nth-of-type(even) .case-media { order: 2; }
+@media (max-width: 800px) {
+  .case { grid-template-columns: 1fr; gap: 1.75rem; }
+  .case:nth-of-type(even) .case-media { order: 0; }
+}
+.case-media {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+}
+.case-media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.case:hover .case-media img { transform: scale(1.025); }
+.case-index {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  color: var(--line);
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+.case:hover .case-index { color: var(--vermillion); }
+.case-body h3 {
+  font-family: var(--serif);
+  font-weight: 480;
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0.9rem 0 1.4rem;
+}
+.case-stats {
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.stat b {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 550;
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: var(--vermillion-deep);
+}
+.stat span {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.case-body p { font-size: 0.95rem; color: var(--ink-soft); max-width: 32em; }
+.case-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink);
+}
+.case-link .arrow { transition: transform 0.25s ease; color: var(--vermillion); }
+.case:hover .case-link .arrow { transform: translateX(5px); }
+
+/* ---------- about band ---------- */
+.about {
+  background: var(--ink);
+  color: var(--paper);
+  padding: clamp(4rem, 10vh, 7.5rem) 0;
+  position: relative; overflow: hidden;
+}
+.about-deco {
+  position: absolute; left: -3rem; bottom: -3rem;
+  width: 300px; opacity: 0.12; pointer-events: none;
+}
+.about-grid {
+  display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+@media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+.about h2 {
+  font-family: var(--serif); font-weight: 380;
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+  line-height: 1.2; letter-spacing: -0.01em;
+  max-width: 17em;
+}
+.about h2 em { font-style: italic; color: var(--gold); }
+.about-facts { display: grid; gap: 1.6rem; align-content: start; }
+.fact { border-left: 2px solid var(--vermillion); padding-left: 1.25rem; }
+.fact b { display: block; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+.fact span { font-size: 0.88rem; color: color-mix(in srgb, var(--paper) 65%, transparent); }
+
+/* ---------- footer ---------- */
+footer { padding: clamp(4rem, 9vh, 6.5rem) 0 3rem; }
+.foot-rule {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 3.5rem;
+}
+.foot-rule::before, .foot-rule::after {
+  content: ""; flex: 1; height: 1px; background: var(--line);
+}
+.foot-rule .diamond {
+  width: 7px; height: 7px; background: var(--vermillion);
+  transform: rotate(45deg);
+}
+.foot-main { text-align: center; }
+.foot-main h2 {
+  font-family: var(--serif); font-weight: 380;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.25rem;
+}
+.foot-main h2 em { font-style: italic; color: var(--vermillion); }
+.foot-main > p { color: var(--ink-soft); max-width: 30em; margin: 0 auto 2.25rem; font-size: 1rem; }
+.foot-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.foot-meta {
+  margin-top: 4.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  font-size: 0.82rem; color: var(--ink-faint);
+}
+.foot-meta .sig { font-family: var(--serif); font-style: italic; font-size: 0.95rem; }
+.social { display: flex; gap: 1.4rem; }
+.social a {
+  text-decoration: none; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem;
+  color: var(--ink-soft); transition: color 0.2s ease;
+}
+.social a:hover { color: var(--vermillion); }
+
+/* ---------- reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#">Surya Haridasan<span class="dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="deco-arch" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+    <g stroke="#C29B4A" stroke-width="1" opacity="0.55">
+      <path d="M200 40 a160 160 0 0 1 160 160 v160 h-320 v-160 a160 160 0 0 1 160-160z"/>
+      <path d="M200 70 a130 130 0 0 1 130 130 v160 h-260 v-160 a130 130 0 0 1 130-130z"/>
+      <path d="M200 100 a100 100 0 0 1 100 100 v160 h-200 v-160 a100 100 0 0 1 100-100z"/>
+    </g>
+    <g stroke="#B5402A" stroke-width="1" opacity="0.5">
+      <line x1="200" y1="200" x2="200" y2="26"/>
+      <line x1="200" y1="200" x2="290" y2="49"/>
+      <line x1="200" y1="200" x2="351" y2="110"/>
+      <line x1="200" y1="200" x2="110" y2="49"/>
+      <line x1="200" y1="200" x2="49" y2="110"/>
+    </g>
+    <path d="M200 130 a70 70 0 0 1 70 70 v160 h-140 v-160 a70 70 0 0 1 70-70z" fill="#B5402A" opacity="0.08"/>
+  </svg>
+  <div class="wrap hero-inner">
+    <span class="kicker">Senior Product Designer · Systems &amp; Strategy</span>
+    <h1>Anyone can ship.<br /><em>Few can design.</em></h1>
+    <p class="hero-sub">AI made building accessible to everyone. It didn't make products usable, and it didn't make them inclusive. I'm <strong>Surya Haridasan</strong>, and I design the part the prompt can't reach.</p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" id="copy-email" type="button">Work with me</button>
+      <a class="btn btn-ghost" href="#work">See the work</a>
+      <span class="copy-note" id="copy-note" aria-live="polite">Copied: surya.haridasan@gmail.com</span>
+    </div>
+  </div>
+</section>
+
+<section class="credo">
+  <div class="wrap credo-grid">
+    <div class="credo-item reveal">
+      <span class="credo-num">No. 1</span>
+      <h3>Systems before screens</h3>
+      <p>Service blueprints, claim hierarchies, incentive maps. I chart how the whole thing works before a single pixel moves.</p>
+    </div>
+    <div class="credo-item reveal">
+      <span class="credo-num">No. 2</span>
+      <h3>Inclusion is craft, not charity</h3>
+      <p>A product most people can't use is a broken product. Sociology and economics inform how I read access and power in every flow.</p>
+    </div>
+    <div class="credo-item reveal">
+      <span class="credo-num">No. 3</span>
+      <h3>Understanding can't be outsourced</h3>
+      <p>Thinking can be delegated to a machine. Knowing why it's right can't. That judgment is what I bring to the table.</p>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="count">Four case studies</span>
+    </div>
+
+    <a class="case reveal" href="../index.html-p-330.html">
+      <div class="case-media"><img src="../wp-content/uploads/2025/05/bg-1024x846.png" alt="Claims enterprise navigation redesign" loading="lazy" /></div>
+      <div class="case-body">
+        <span class="case-index">01</span>
+        <h3>Redesigning the navigational framework for a claims enterprise</h3>
+        <div class="case-stats">
+          <div class="stat"><b>5</b><span>Navigation layers</span></div>
+          <div class="stat"><b>7</b><span>Behavioral scenarios</span></div>
+        </div>
+        <p>A navigation re-architecture that clarified ownership between global and contextual systems, unified claim hierarchies, and made behavior predictable enough to scale.</p>
+        <span class="case-link">Read the case study <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a class="case reveal" href="../index.html-p-56.html">
+      <div class="case-media"><img src="../wp-content/uploads/2025/05/MRS-Main-page-1024x683.png" alt="Medical reporting system main page" loading="lazy" /></div>
+      <div class="case-body">
+        <span class="case-index">02</span>
+        <h3>Reducing cognitive load in high-stakes medical reporting</h3>
+        <div class="case-stats">
+          <div class="stat"><b>8h &rarr; 60m</b><span>Per report</span></div>
+          <div class="stat"><b>50+</b><span>Steps streamlined</span></div>
+        </div>
+        <p>Nurses were losing whole shifts to reporting. A rebuilt MRS workflow cut report time from eight hours to under one, so the tool supports care work instead of competing with it.</p>
+        <span class="case-link">Read the case study <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a class="case reveal" href="../index.html-p-223.html">
+      <div class="case-media"><img src="../wp-content/uploads/2025/05/pexels-mitrofan-pictures-9581722-1-1024x707.jpg" alt="Airline loyalty program concept" loading="lazy" /></div>
+      <div class="case-body">
+        <span class="case-index">03</span>
+        <h3>Reimagining airline loyalty through AI</h3>
+        <div class="case-stats">
+          <div class="stat"><b>15</b><span>Person team led</span></div>
+          <div class="stat"><b>7</b><span>Day itinerary</span></div>
+        </div>
+        <p>Led fifteen designers on a MileagePlus proof of concept: personalized itineraries, real-time recommendations, and goal-based rewards that turn loyalty into an adventure.</p>
+        <span class="case-link">Read the case study <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+
+    <a class="case reveal" href="../index.html-p-122.html">
+      <div class="case-media"><img src="../wp-content/uploads/2025/05/pexels-elevate-1267338-1024x683.jpg" alt="Warehouse operations" loading="lazy" /></div>
+      <div class="case-body">
+        <span class="case-index">04</span>
+        <h3>Modernizing a legacy warehouse management system</h3>
+        <div class="case-stats">
+          <div class="stat"><b>30&ndash;40%</b><span>Faster task completion</span></div>
+          <div class="stat"><b>12</b><span>Week delivery</span></div>
+        </div>
+        <p>A legacy application redesigned around the ground staff who actually use it: fewer bottlenecks, clearer states, faster and less error-prone operations.</p>
+        <span class="case-link">Read the case study <span class="arrow">&rarr;</span></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <svg class="about-deco" viewBox="0 0 300 300" fill="none" aria-hidden="true">
+    <g stroke="#FAF6EE" stroke-width="1">
+      <circle cx="150" cy="150" r="140"/>
+      <circle cx="150" cy="150" r="110"/>
+      <circle cx="150" cy="150" r="80"/>
+      <circle cx="150" cy="150" r="50"/>
+    </g>
+  </svg>
+  <div class="wrap about-grid">
+    <h2 class="reveal">Seven years across enterprise UX taught me one thing: the hard problems are never on the screen. They live in the <em>incentives, hierarchies, and habits</em> underneath it.</h2>
+    <div class="about-facts">
+      <div class="fact reveal"><b>NID-trained, sociology-informed</b><span>Design decisions read against incentives, identity, access, and power, not just usability heuristics.</span></div>
+      <div class="fact reveal"><b>Zero-to-one and at-scale</b><span>From single-handedly conceiving an insurance operations portal to leading a 15-member team.</span></div>
+      <div class="fact reveal"><b>Analog-first thinker</b><span>Chart paper before Figma. The scrapbook instinct that got me into NID still drives how I work.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-rule"><span class="diamond"></span></div>
+    <div class="foot-main">
+      <h2>Exploring something <em>complex?</em></h2>
+      <p>I design complex product experiences at the intersection of behavior, structure, and strategy. If you want a thoughtful collaborator, let's talk.</p>
+      <div class="foot-actions">
+        <button class="btn btn-primary" id="copy-email-2" type="button">Copy my email</button>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span class="sig">Context is everything.</span>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/surya-haridasan/">LinkedIn</a>
+        <a href="https://www.behance.net/suryaharidasan">Behance</a>
+        <a href="https://www.instagram.com/sueartsurya/">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function wireCopy(btnId) {
+  var btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText('surya.haridasan@gmail.com').then(function () {
+      var note = document.getElementById('copy-note');
+      if (note) { note.classList.add('show'); setTimeout(function () { note.classList.remove('show'); }, 2600); }
+      var prev = btn.textContent;
+      btn.textContent = 'Email copied';
+      setTimeout(function () { btn.textContent = prev; }, 2600);
+    });
+  });
+}
+wireCopy('copy-email');
+wireCopy('copy-email-2');
+
+var io = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+</script>
+
+</body>
+</html>
